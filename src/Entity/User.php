@@ -179,6 +179,7 @@ class User
      * @ORM\PreFlush
      */
     public function preSave(){
+        //dd($this->getImages());
         foreach ($this->images as $image){
             $image->setUser($this);
         }

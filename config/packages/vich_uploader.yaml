@@ -6,6 +6,6 @@ vich_uploader:
             namer: vich_uploader.namer_origname
             directory_namer: user.directory.namer
             inject_on_load: false
-            delete_on_update: true
+            delete_on_update: false
             delete_on_remove: true
 
