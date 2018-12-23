@@ -1,0 +1,8 @@
+{{ form_start(form) }}
+    {{ form_widget(form) }}
+    {% for image in user.images  %}
+        <img class="img-responsive img-thumbnail" id="show_img" src="{{ vich_uploader_asset(image, 'file') }}" />
+    {% endfor %}
+<a href="#" id="add_image" class="btn btn-default">Ajouter nouveau image</a>
+<button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}
