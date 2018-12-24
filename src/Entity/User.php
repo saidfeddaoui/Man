@@ -57,11 +57,19 @@ class User
     private $images;
 
     /**
+     * @ORM\Column(type="datetime")
+     *
+     * @var \DateTime
+     */
+    private $updatedAt;
+
+    /**
      * User constructor.
      */
     public function __construct()
     {
         $this->images = new ArrayCollection();
+        $this->updatedAt = new \DateTimeImmutable();
     }
 
 

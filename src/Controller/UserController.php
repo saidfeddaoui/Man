@@ -83,11 +83,9 @@ class UserController extends AbstractController
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
-        //$path = $this->helper->asset($user, 'imageFile');
-        //dd($path);
         if ($form->isSubmitted() && $form->isValid()) {
+            $user->preSave();
             $this->getDoctrine()->getManager()->flush();
-
             return $this->redirectToRoute('user_index', ['id' => $user->getId()]);
         }
 
