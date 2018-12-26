@@ -1,8 +1,15 @@
+{% form_theme form _self %}
 {{ form_start(form) }}
     {{ form_widget(form) }}
-    {% for image in user.images  %}
-        <img class="img-responsive img-thumbnail" id="show_img" src="{{ vich_uploader_asset(image, 'file') }}" />
-    {% endfor %}
-<a href="#" id="add_image" class="btn btn-default">Ajouter nouveau image</a>
+    <div id="attachements" class="form-group">
+        {% for image in user.images  %}
+            <img class="img-responsive img-thumbnail" id="show_img" src="{{ vich_uploader_asset(image, 'file') }}" />
+        {% else %}
+            {% block _images_entry_widget %}
+                <div class="form-group test">{{ form_widget(form.images) }}</div>
+            {% endblock %}
+        {% endfor %}
+        <a href="#" id="add_image" class="btn btn-{% if user.images is not empty  %}danger{% else %}success{% endif %}">{% if user.images is not empty  %}Modifier{% else %}Ajouter{% endif %}</a>
+    </div>
 <button class="btn">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}

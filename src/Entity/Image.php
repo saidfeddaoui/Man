@@ -9,6 +9,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ImageRepository")
  * @Vich\Uploadable
+ * @ORM\HasLifecycleCallbacks()
  */
 class Image
 {
@@ -133,5 +134,17 @@ class Image
     {
         $this->user = $user;
         return $this;
+    }
+
+
+    /**
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
+     * @ORM\PreFlush
+     */
+    public function preSave(){
+        $name = explode(".", $this->file->getFilename());
+        $this->setName($name[0]);
+        $this->setExtension($this->file->getExtension());
     }
 }

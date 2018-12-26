@@ -35,6 +35,12 @@
                 <th>Fonction</th>
                 <td>{{ user.fonction }}</td>
             </tr>
+            {% for image in user.images %}
+                <tr>
+                    <th>Gravatar</th>
+                    <td><img class="img-responsive img-thumbnail" id="show_img" src="{{ vich_uploader_asset(image, 'file') }}" /></td>
+                </tr>
+            {% endfor %}
         </tbody>
     </table>
 
